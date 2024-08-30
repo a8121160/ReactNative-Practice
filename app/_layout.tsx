@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
-import {Slot} from "expo-router"
+import { Slot } from "expo-router"
 
-const Layout =():JSX.Element => {
+const Layout = (): JSX.Element => {
     return <Slot />
 }
 

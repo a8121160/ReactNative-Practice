@@ -1,8 +1,9 @@
 
-import { View,Text } from "react-native"
+import { View, Text } from "react-native"
 
-const Index =():JSX.Element =>{
-    return(
+
+const Index = (): JSX.Element => {
+    return (
         <View>
             <Text>Hello World</Text>
         </View>
