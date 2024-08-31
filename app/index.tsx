@@ -1,13 +1,29 @@
 
-import { View, Text } from "react-native"
+import { View, Text, StyleSheet } from "react-native"
+import Header from "../components/header"
+import MemoListItem from "../components/MemoListItem"
+import CircleButton from "../components/CircleButton"
 
 
 const Index = (): JSX.Element => {
     return (
-        <View>
-            <Text>Hello World</Text>
+        <View style={styles.container}>
+            <Header />
+            <View>
+                <MemoListItem />
+                <MemoListItem />
+                <MemoListItem />
+            </View>
+            <CircleButton>+</CircleButton>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1, //画面いっぱいに要素を広げる
+        backgroundColor: '#ffffff'
+    }
+})
 
 export default Index
