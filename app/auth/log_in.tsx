@@ -2,6 +2,7 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-nativ
 import { Link, router } from "expo-router";
 
 import Button from "../../components/Button";
+import { useState } from "react";
 
 //何も返さない
 const handlePress = (): void => {
@@ -10,12 +11,31 @@ const handlePress = (): void => {
 }
 
 const LogIn = (): JSX.Element => {
+    //emailには""が入る
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     return (
         <View style={styles.container}>
             <View style={styles.inner}>
                 <Text style={styles.title}>Log In</Text>
-                <TextInput style={styles.input} value="Email address" />
-                <TextInput style={styles.input} value="password" />
+                <TextInput
+                    style={styles.input}
+                    value={email}
+                    onChangeText={(text) => setEmail(text)}
+                    autoCapitalize="none"
+                    keyboardType="email-address"
+                    placeholder="Email-address"
+                    textContentType="emailAddress"
+                />
+
+                <TextInput
+                    style={styles.input}
+                    value={password}
+                    onChangeText={(password) => setPassword(password)}
+                    autoCapitalize="none"
+                    placeholder="Password"
+                    textContentType="password"
+                />
                 <Button onPress={handlePress} label="Submit" />
                 <View style={styles.footer}>
                     <Text style={styles.footerText}>Not registered?</Text>

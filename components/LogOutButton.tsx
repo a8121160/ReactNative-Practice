@@ -1,11 +1,9 @@
 import {
     Text, StyleSheet, TouchableOpacity,
-    type ViewStyle
 } from "react-native"
 
 const LogOutButton = (): JSX.Element => {
     return (
-
         <TouchableOpacity >
             <Text style={styles.text}>ログアウト</Text>
         </TouchableOpacity >

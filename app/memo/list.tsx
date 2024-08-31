@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native"
+import { View, StyleSheet } from "react-native"
 import { router, useNavigation } from "expo-router"
 import { useEffect } from "react"
 
