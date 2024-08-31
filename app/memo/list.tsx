@@ -1,17 +1,30 @@
 import { View, Text, StyleSheet } from "react-native"
-import { router } from "expo-router"
-
+import { router, useNavigation } from "expo-router"
+import { useEffect } from "react"
 
 import MemoListItem from "../../components/MemoListItem"
 import CircleButton from "../../components/CircleButton"
 import Icon from "../../components/Icon"
-
+import LogOutButton from "../../components/LogOutButton"
 
 const handlePress = (): void => {
     router.push("/memo/create")
 }
 
 const Index = (): JSX.Element => {
+    //↓reactHooksはコンポーネントの直下に置く
+    const navigation = useNavigation()
+    useEffect(() => {
+        navigation.setOptions({
+            //headerをカスタマイズしてる
+            headerRight: () => {
+                return <LogOutButton />
+            }
+        })
+    }, [])
+    //navigationというオブジェクト
+
+
     return (
         <View style={styles.container}>
             <View>
