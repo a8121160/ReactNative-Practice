@@ -6,13 +6,16 @@ import MemoListItem from "../../components/MemoListItem"
 import CircleButton from "../../components/CircleButton"
 import Icon from "../../components/Icon"
 import LogOutButton from "../../components/LogOutButton"
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore"
+import { auth, db } from "../config"
 
 const handlePress = (): void => {
     router.push("/memo/create")
 }
 
-const Index = (): JSX.Element => {
+const List = (): JSX.Element => {
     //↓reactHooksはコンポーネントの直下に置く
+
     const navigation = useNavigation()
     useEffect(() => {
         navigation.setOptions({
@@ -24,6 +27,17 @@ const Index = (): JSX.Element => {
     }, [])
     //navigationというオブジェクト
 
+    useEffect(() => {
+        if (auth.currentUser === null) { return }
+        const ref = collection(db, `users/${auth.currentUser.uid}/memos`)
+        const q = query(ref, orderBy("updateAt", "desc"))
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            snapshot.forEach((doc) => {
+                console.log("memo", doc.data())
+            })
+        })
+        return unsubscribe
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -46,4 +60,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Index
+export default List
