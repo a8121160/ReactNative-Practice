@@ -1,12 +1,26 @@
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { Link, router } from "expo-router";
 
 import Button from "../../components/Button";
 import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../config";
 
-const handlePress = (): void => {
+const handlePress = (email: string, password: string): void => {
     //会員登録  
-    router.push("/memo/list")
+    createUserWithEmailAndPassword(auth, email, password)
+        //then 成功　catch失敗
+        .then((userCredential) => {
+            console.log(userCredential.user.uid)
+            router.replace("/memo/list")
+        })
+        //errorというオブジェクトはどこで定義されてる？
+        .catch((error) => {
+            const { code, message } = error
+            console.log(code, message)
+            Alert.alert(message)
+        })
+
 }
 
 const SignUp = (): JSX.Element => {
@@ -23,7 +37,7 @@ const SignUp = (): JSX.Element => {
                     onChangeText={(text) => setEmail(text)}
                     autoCapitalize="none"
                     keyboardType="email-address"
-                    placeholder="Email-address"
+                    placeholder="Email Address"
                     textContentType="emailAddress"
                 />
                 <TextInput
@@ -31,13 +45,14 @@ const SignUp = (): JSX.Element => {
                     value={password}
                     onChangeText={(password) => setPassword(password)}
                     autoCapitalize="none"
+                    secureTextEntry
                     placeholder="Password"
                     textContentType="password"
                 />
-                <Button label="Submit" onPress={handlePress} />
+                <Button label="Submit" onPress={() => { handlePress(email, password) }} />
                 <View style={styles.footer}>
                     <Text style={styles.footerText}>Already registered?</Text>
-                    <Link href="/auth/log_in" asChild>
+                    <Link href="/auth/log_in" asChild replace>
                         <TouchableOpacity>
                             <Text style={styles.footerLink}>Log In.</Text>
                         </TouchableOpacity>
