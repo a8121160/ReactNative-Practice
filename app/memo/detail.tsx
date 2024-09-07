@@ -1,12 +1,13 @@
 import { View, Text, ScrollView, StyleSheet } from "react-native"
 import { router, useLocalSearchParams } from "expo-router"
+import { useEffect, useState } from "react"
+import { type Memo } from "../../types/memo"
+import { auth, db } from "../config"
+import { doc, onSnapshot } from "firebase/firestore"
 
 import CircleButton from "../../components/CircleButton"
 import Icon from "../../components/Icon"
-import { useEffect, useState } from "react"
-import { Memo } from "../../types/memo"
-import { auth, db } from "../config"
-import { doc, onSnapshot } from "firebase/firestore"
+
 
 
 const handlePress = (id: string): void => {
@@ -36,7 +37,7 @@ const Detail = (): JSX.Element => {
         <View style={styles.container}>
             <View style={styles.memoHeader}>
                 <Text style={styles.memoTitle} numberOfLines={1}>{memo?.bodyText}</Text>
-                <Text style={styles.memoDate}>{memo?.updatedAt.toDate().toLocaleString("ja-JP")}</Text>
+                <Text style={styles.memoDate}>{memo?.updatedAt?.toDate().toLocaleString("ja-JP")}</Text>
             </View>
             <ScrollView style={styles.memoBody}>
                 <Text style={styles.memoBodyText} >

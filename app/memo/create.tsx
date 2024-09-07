@@ -1,13 +1,13 @@
 import { View, TextInput, StyleSheet, } from "react-native"
 // ↑ReactNativeのコアコンポーネント
 import { router } from "expo-router"
-import KeyboardAvoidingView from "../../components/KeyboardAvoidingView"
-import CircleButton from "../../components/CircleButton"
-import Icon from "../../components/Icon"
 import { auth, db } from "../config"
 import { Timestamp, addDoc, collection } from "firebase/firestore"
 import { useState } from "react"
 
+import KeyboardAvoidingView from "../../components/KeyboardAvoidingView"
+import CircleButton from "../../components/CircleButton"
+import Icon from "../../components/Icon"
 
 const handlePress = (bodyText: string): void => {
     if (auth.currentUser === null) { return }
@@ -58,13 +58,11 @@ const Create = (): JSX.Element => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffffff'
     },
     inputContainer: {
         paddingVertical: 32,
         paddingHorizontal: 27,
         flex: 1,
-        backgroundColor: '#ffffff'
     },
     input: {
         flex: 1,

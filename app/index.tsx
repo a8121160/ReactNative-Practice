@@ -6,7 +6,7 @@ import { useEffect } from "react";
 const Index = (): JSX.Element => {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
-            if (user) {
+            if (user !== null) {
                 router.replace("/memo/list")
             }
         })

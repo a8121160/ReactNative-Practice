@@ -1,13 +1,17 @@
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native"
-import Icon from "./Icon"
 import { Link } from "expo-router"
+import { deleteDoc, doc } from "firebase/firestore"
+
+import Icon from "./Icon"
 import { type Memo } from "../types/memo"
 import { auth, db } from "../app/config"
-import { deleteDoc, doc } from "firebase/firestore"
 
 interface Props {
     memo: Memo
 }
+
+//ZTghb72CDcVQxw5R7bytSdzFLmd2
+// ${auth.currentUser.uid}
 
 const handlePress = (id: string): void => {
     if (auth.currentUser === null) { return }
@@ -47,7 +51,6 @@ const MemoListItem = (props: Props): JSX.Element | null => {
                 </TouchableOpacity>
             </TouchableOpacity>
         </Link>
-
     )
 }
 

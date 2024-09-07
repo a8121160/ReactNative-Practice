@@ -22,7 +22,6 @@ const handlePress = (id: string, bodyText: string): void => {
             console.log(error)
             Alert.alert("更新に失敗しました")
         })
-    router.back()
 }
 
 const Edit = (): JSX.Element => {
@@ -41,7 +40,6 @@ const Edit = (): JSX.Element => {
     }, [])
     return (
         <KeyboardAvoidingView style={styles.container}>
-
             <View style={styles.inputContainer}>
                 <TextInput
                     multiline
@@ -61,12 +59,9 @@ const Edit = (): JSX.Element => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffffff'
     },
     inputContainer: {
-
         flex: 1,
-        backgroundColor: '#ffffff'
     },
     input: {
         flex: 1,

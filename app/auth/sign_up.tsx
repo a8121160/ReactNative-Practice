@@ -28,7 +28,6 @@ const SignUp = (): JSX.Element => {
     const [password, setPassword] = useState("")
     return (
         <View style={styles.container}>
-
             <View style={styles.inner}>
                 <Text style={styles.title}>Sign Up</Text>
                 <TextInput

@@ -1,15 +1,16 @@
-import { View, StyleSheet } from "react-native"
+import { View, StyleSheet, FlatList } from "react-native"
 import { router, useNavigation } from "expo-router"
 import { useEffect, useState } from "react"
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore"
+import { auth, db } from "../config"
+import { type Memo } from "../../types/memo"
 
 import MemoListItem from "../../components/MemoListItem"
 import CircleButton from "../../components/CircleButton"
 import Icon from "../../components/Icon"
 import LogOutButton from "../../components/LogOutButton"
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore"
-import { auth, db } from "../config"
-import { Memo } from "../../types/memo"
-import { FlatList } from "react-native-gesture-handler"
+
+
 
 const handlePress = (): void => {
     router.push("/memo/create")
@@ -18,7 +19,6 @@ const handlePress = (): void => {
 const List = (): JSX.Element => {
     //↓reactHooksはコンポーネントの直下に置く
     const [memos, setMemos] = useState<Memo[]>([])
-
     const navigation = useNavigation()
     useEffect(() => {
         navigation.setOptions({
