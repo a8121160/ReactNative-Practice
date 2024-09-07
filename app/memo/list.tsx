@@ -2,14 +2,13 @@ import { View, StyleSheet, FlatList } from "react-native"
 import { router, useNavigation } from "expo-router"
 import { useEffect, useState } from "react"
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore"
-import { auth, db } from "../config"
-import { type Memo } from "../../types/memo"
 
 import MemoListItem from "../../components/MemoListItem"
 import CircleButton from "../../components/CircleButton"
 import Icon from "../../components/Icon"
 import LogOutButton from "../../components/LogOutButton"
-
+import { auth, db } from "../config"
+import { type Memo } from "../../types/memo"
 
 
 const handlePress = (): void => {
